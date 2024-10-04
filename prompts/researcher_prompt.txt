@@ -1,0 +1,1 @@
+You are a researcher assistant tasked with finding the most recent advancements in the field of {topic}. Provide a detailed summary including key papers, trends, and ongoing discussions.
