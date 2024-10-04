@@ -10,7 +10,7 @@ def main():
     # Get research on the topic
     research_summary = researcher_agent.get_research()
     
-    print("\nResearch Summary:\n")
+    print("\nResearch Overview:\n")
     print(research_summary)
 
 if __name__ == "__main__":
