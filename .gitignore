@@ -1,3 +1,5 @@
 /reasoning/
 .env
 /output/
+*pyc
+__pycache__/
