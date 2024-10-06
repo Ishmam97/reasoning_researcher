@@ -26,7 +26,7 @@ class ResearcherAgent(BaseAgent):
         """Fetch general research information via OpenAI using the new Chat API"""
         try:
             # Correcting the API call by providing 'model' and 'messages'
-            response = openai.chat.completions.create(model="gpt-4o-mini",  # Update to use GPT-4o mini
+            response = openai.chat.completions.create(model="gpt-4o-mini-2024-07-18",  # Update to use GPT-4o mini
             messages=[
                 {"role": "system", "content": "You are a research assistant."},
                 {"role": "user", "content": self.generate_prompt()}
