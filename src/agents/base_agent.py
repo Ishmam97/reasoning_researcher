@@ -16,6 +16,10 @@ class BaseAgent:
         if not api_key:
             raise ValueError("OpenAI API key is missing in the environment variables")
         openai.api_key = api_key
+        base_url= os.getenv("AI_ML_API")
+        if not base_url:
+            raise ValueError("AI_ML API key is missing in the environment variables")
+        openai.base_url = base_url
 
     def save_memory(self, input_data, output_data):
         """Saves the input and output to agent's memory."""
