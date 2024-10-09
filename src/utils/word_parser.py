@@ -1,6 +1,8 @@
 import docx2txt 
 
 class DocumentReader:
+
+    @staticmethod
     def doc_extract_content(doc_file):
         
         text = ""
