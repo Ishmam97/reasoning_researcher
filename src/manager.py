@@ -7,17 +7,10 @@ class AgentManager:
         self.researcher_agent = ResearcherAgent(topic)
         self.analyst_agent = AnalystAgent()
 
-    def orchestrate_agents(self):
+    def orchestrate_agents(self, output_dir):
         """Orchestrate agent actions in sequence."""
-        print(f"Researching topic: {self.topic}")
-
-        # Researcher agent gathers research material
-        research_results = self.researcher_agent.search_papers()
-        print("Researcher Agent Results:\n", research_results)
-
-        # Analyst agent analyzes the research and finds gaps
+        research_results = self.researcher_agent.search_papers(output_dir)
         analysis = self.analyst_agent.analyze_papers(research_results)
-        print("Analyst Agent Results:\n", analysis)
-
         return research_results, analysis
+
 

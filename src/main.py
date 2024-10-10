@@ -19,11 +19,14 @@ def main():
 
     # Initialize the manager and orchestrate the agents
     manager = AgentManager(topic)
-    research_results, analysis = manager.orchestrate_agents()
+    
+    # Pass output_dir to save the tool call results
+    research_results, analysis = manager.orchestrate_agents(output_dir) 
 
     # Save outputs from both agents
     save_output_to_markdown(research_results, "ResearcherAgent", output_dir)
-    save_output_to_markdown(analysis, "AnalystAgent", output_dir)
+    # save_output_to_markdown(analysis, "AnalystAgent", output_dir)
+
 
 if __name__ == "__main__":
     main()
