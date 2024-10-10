@@ -1,6 +1,6 @@
 from langchain_community.tools import ArxivQueryRun  # Updated as per deprecation warning
 from .base_agent import BaseAgent
-import openai  # Ensure openai is imported
+import os
 
 class ResearcherAgent(BaseAgent):
     def __init__(self, topic):
@@ -12,16 +12,25 @@ class ResearcherAgent(BaseAgent):
         """Determine if the arXiv tool is needed based on the topic."""
         return any(keyword in topic.lower() for keyword in ['research', 'paper', 'study', 'academic'])
 
-    def search_papers(self):
+    def search_papers(self, output_dir):
         """Use the arXiv tool if needed or fetch research using OpenAI otherwise."""
         if self.should_use_arxiv(self.topic):
             print(f"Using arXiv tool for topic: {self.topic}")
-            results = self.use_tool(self.arxiv_tool, self.topic)
+            results = self.arxiv_tool.run(self.topic)
+            self.save_tool_results("ArxivResults", results, output_dir)  # Pass output_dir here
         else:
             results = self.generic_research(self.topic)
         self.save_memory(self.topic, results)
         return results
 
+    def save_tool_results(self, tool_name, results, output_dir):
+        """Save the tool call results to a separate file in the same output directory."""
+        file_path = os.path.join(output_dir, f"{tool_name}_{self.topic}.md")
+        with open(file_path, "w") as file:
+            file.write(f"# Results from {tool_name}\n\n")
+            file.write(results)
+        print(f"Results saved to {file_path}")
+        
     def generic_research(self, topic):
         """Fetch general research information via OpenAI using the new Chat API"""
         try:
