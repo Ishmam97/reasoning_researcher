@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    volumes:
+      - ./output:/app/output
+      - ./prompts:/app/prompts
+      - ./inputs:/app/inputs
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    stdin_open: true  # Keeps STDIN open for interactive input
+    tty: true         # Allocates a pseudo-TTY
