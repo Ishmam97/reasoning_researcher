@@ -13,5 +13,11 @@ RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.
 # Copy the source code into the container
 COPY src/ .
 
-# Set the entry point command
-CMD ["python", "main.py"]
+# Expose Streamlit's default port
+EXPOSE 8501
+
+# # Set the entry point command
+# CMD ["python", "main.py"]
+
+# Set the entry point command to run Streamlit
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
